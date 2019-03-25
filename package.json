@@ -1,0 +1,9 @@
+{
+  "name": "@kemoke/data-utils",
+  "private": false,
+  "repository": "",
+  "main": "index.js",
+  "version": "1.0.0",
+  "author": "Kemal Hrelja",
+  "license": "MIT"
+}

@@ -70,6 +70,7 @@ function getProp(path, obj, options = defaultGetOptions) {
         }
         obj = obj[part]
     }
+    if (obj === null || obj === undefined) return options.defaultValue;
     return obj;
 }
 

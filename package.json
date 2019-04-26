@@ -1,7 +1,7 @@
 {
   "name": "@kemoke/data-utils",
   "private": false,
-  "repository": "",
+  "repository": "https://github.com/Kemoke/data-utils",
   "main": "index.js",
   "version": "1.0.1",
   "author": "Kemal Hrelja",

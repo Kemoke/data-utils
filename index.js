@@ -18,9 +18,10 @@ var defaultSetOptions = {
  * @param path Property path separated with separator (default: '.')
  * @param data Data to set
  * @param obj Object for which to set
- * @param options Path parsing options (optional)
+ * @param extraOptions Path parsing options (optional)
  */
-function setProp(path, data, obj, options = defaultSetOptions) {
+function setProp(path, data, obj, extraOptions = {}) {
+    var options = Object.assign({}, defaultSetOptions, extraOptions);
     var pathParts = path.split(options.separator);
     while (pathParts.length > 1) {
         var part = pathParts.shift();
@@ -44,10 +45,11 @@ function setProp(path, data, obj, options = defaultSetOptions) {
  * @param path Property path separated with separator (default: '.')
  * @param data Data to set
  * @param obj Object for which to set
- * @param options Path parsing options (optional)
+ * @param extraOptions Path parsing options (optional)
  * @returns Object with property set
  */
-function setPropImmutable(path, data, obj, options = defaultSetOptions) {
+function setPropImmutable(path, data, obj, extraOptions = {}) {
+    var options = Object.assign({}, defaultSetOptions, extraOptions);
     obj = cloneDeep(obj);
     setProp(path, data, obj, options);
     return obj;
@@ -63,10 +65,11 @@ var defaultGetOptions = {
  * Gets value from object given a path
  * @param path Property path separated with separator (default: '.')
  * @param obj Data from where to get
- * @param options Path parsing options (optional)
+ * @param extraOptions Path parsing options (optional)
  * @returns Data from object or default value if data is not found
  */
-function getProp(path, obj, options = defaultGetOptions) {
+function getProp(path, obj, extraOptions = {}) {
+    var options = Object.assign({}, defaultGetOptions, extraOptions);
     var pathParts = path.split(options.separator);
     while (pathParts.length > 0) {
         var part = pathParts.shift();

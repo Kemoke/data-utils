@@ -9,7 +9,8 @@ function cloneDeep(obj) {
 
 var defaultSetOptions = {
     numericPathAsArray: false,
-    separator: '.'
+    separator: '.',
+    skipProps: []
 };
 
 /**
@@ -23,6 +24,9 @@ function setProp(path, data, obj, options = defaultSetOptions) {
     var pathParts = path.split(options.separator);
     while (pathParts.length > 1) {
         var part = pathParts.shift();
+        if (options.skipProps.indexOf(part) !== -1) {
+            continue;
+        }
         if (obj[part] === null || obj[part] === undefined) {
             if (options.numericPathAsArray && !isNaN(parseInt(part, 10)))  {
                 obj[part] = []
@@ -51,7 +55,8 @@ function setPropImmutable(path, data, obj, options = defaultSetOptions) {
 
 var defaultGetOptions = {
     separator: '.',
-    defaultValue: undefined
+    defaultValue: undefined,
+    skipProps: []
 };
 
 /**
@@ -65,6 +70,9 @@ function getProp(path, obj, options = defaultGetOptions) {
     var pathParts = path.split(options.separator);
     while (pathParts.length > 0) {
         var part = pathParts.shift();
+        if (options.skipProps.indexOf(part) !== -1) {
+            continue;
+        }
         if (obj[part] === null || obj[part] === undefined) {
             return options.defaultValue
         }
